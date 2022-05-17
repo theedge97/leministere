@@ -1,0 +1,9 @@
+@media (max-width:991px) {
+    body.poster {
+        margin-top: 40vh;
+    }
+}
+
+body.poster {
+    background-attachment: fixed;
+}

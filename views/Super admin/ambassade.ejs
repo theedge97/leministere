@@ -1,0 +1,323 @@
+	<!-- debut de head-->
+    <%- include('head'); -%>
+    <!--Fin de head -->
+    <style>
+      .error
+    {
+        color: red;
+    }
+    #erreurmotpasse, #erreurnumero
+    {
+        display: none;
+    }
+  
+    </style> 
+        <script src="/assets/semantic/assets/js/jquery.min.js"></script>
+        <script src="/assets/semantic/assets/js/jquery.validate.js"></script>
+      
+        </head>
+        <%- include('menue'); -%>
+        
+                    <main class="col-md-9  ms-sm-auto col-lg-10 px-md-4">
+                        <div class="row">
+                            <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                <div class="page-title text-primary mb-2 mb-sm-0">
+                                    <h1>liste des Ambassades </h1>
+                                </div>
+                               
+                            </div>
+                            <div class="d-block d-lg-flex flex-nowrap align-items-center">
+                              <div class="page-title text-primary mb-2 mb-sm-0">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" class="mb-5 offset-lg-0 offset-xs-5 btn btn-primary">Ajoutez un Ambassade</button>  </div>
+                              <!--Ajout modale-->
+                              
+  <!-- Modal Ajout article-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title " id="exampleModalLabel">Ajout d'un Ambassades</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <form method="post" action="/Superadmin/Ambassadeajout"   id="ajout"> 
+          <div class="mb-3"> 
+            <select name="pays" class="form-control p-3">
+            
+              <option>Veuillez selectionner un Pays</option>
+              <% for(var i= 0 ; i < pays.length; i++)  {%> 
+                <option  value="<%= pays[i].idpays %>"><%= pays[i].pays %></option>
+                  <% } %>
+
+            </select required>
+            </div>   
+                                                                              
+                                      <div class="text-end">
+  
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fermer</button>
+                                          <button type="submit" class="btn btn-primary pe-4 ps-4 rounded-pill">
+                                              <span>Enregistrer</span>
+                                          </button>
+                                      </div>                                     
+                                  </form>
+        </div>
+      </div>
+    </div>
+  </div>
+                            <!--Fin -->
+                             
+                          </div>
+                          
+                        </div>
+                        <hr class="text-primary">
+                        <div class="row">
+                          <div class="col-12  col-lg-12">
+                            <div class="card card-statistics">
+                                <div class="card-header">
+                                    <div class="card-heading">
+                                        <h4 class="card-title text-primary">Liste des ambassades</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <caption>Liste des Ambassades</caption>
+                                            <thead>
+                                            
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nom de l'ambassade </th>
+                                                    <th scope="col">Pays </th>
+                                                    <th scope="col">Modifier </th>
+                                                    <th scope="col">Supprimer</th>
+                                                </tr>
+                                               
+                                            </thead>
+                                            <tbody>
+                                              <% if(typeof lesamba !== "undefined"){ %>
+                                                <% for(var i= 0 ; i < lesamba.length; i++)  {%> 
+                                                <tr>
+                                                    <th scope="row"><%= i+1 %></th>
+                                                    <td>Ambassade  <%= lesamba[i].pays %> </td>
+                                                    <td><%= lesamba[i].pays %></td>
+                                                    <td> <button data-bs-toggle="modal" data-bs-target="#modifierpays<%= lesamba[i].idamb %>"  class="btn btn-info btn-xs"><svg  enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#0B2D3F"><g><rect fill="none" height="24" width="24"/></g><g><g><g><polygon points="3,17.25 3,21 6.75,21 17.81,9.94 14.06,6.19"/></g><g><path d="M20.71,5.63l-2.34-2.34c-0.39-0.39-1.02-0.39-1.41,0l-1.83,1.83l3.75,3.75l1.83-1.83C21.1,6.65,21.1,6.02,20.71,5.63z"/></g></g></g></svg></button></td>
+                                                    <td><button data-bs-toggle="modal" data-bs-target="#supprimer<%= lesamba[i].idamb %>"  class="btn btn-info btn-xs"><svg  height="24px" viewBox="0 0 24 24" width="24px" fill="#0B2D3F"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button></td>
+                                                </tr>
+                                                 <!--Boite suppression 	idamb-->
+           <div class="modal fade" id="supprimer<%= lesamba[i].idamb %>" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-primary">
+                    <h5 class="modal-title " id="exampleModalLabel">Suppression d'un Ambassades</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                    <div class="modal-body text-dark">
+                        Voulez-vous supprimer  l'Ambassade du <%= lesamba[i].pays %>  ..?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Non</button>
+                        <a href="/Superadmin/AmbassadeSupprimer/<%= lesamba[i].idamb %>"><button type="button" class="btn btn-danger">Oui</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Boite suppression fin-->
+        
+  <!-- Modifier  nom du pays-->
+  <div class="modal fade" id="modifierpays<%= lesamba[i].idamb %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title" id="exampleModalLaboel">Modification  des informations de l'Ambassade  <%= lesamba[i].pays %> </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <form method="post" action="/Superadmin/Ambassademodifier"   id="paysmo"> 
+                                       
+        <div class="mb-3"> 
+       <input type="hidden" class="form-control p-3" id="idamba" name="idamba" value="<%= lesamba[i].idamb %>"  required> 
+         </div>
+         <div class="mb-3">
+          <select name="moamba" class="form-control p-3">
+            <option>Veuillez selectionner un pays </option>
+            <% for(var j= 0 ; j < pays.length; j++)  {%> 
+              <option  value="<%= pays[j].idpays %>"><%= pays[j].pays %></option>
+                <% } %>
+          </select>
+         </div>  
+       
+                                                                              
+                                      <div class="text-end">
+  
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fermer</button>
+                                          <button type="submit" class="btn btn-primary pe-4 ps-4 rounded-pill">
+                                              <span>Enregistrer</span>
+                                          </button>
+                                      </div>                                     
+                                  </form>
+        </div>
+      </div>
+    </div>
+  </div>
+                            <!--Fin -->
+                            <script>
+           
+                              $().ready(function() {
+                                 // validate the comment form when it is submitted
+                                 jQuery.validator.addMethod("phoneGuinee", function (phone_number, element) {
+                                   phone_number = phone_number.replace(/\s+/g, "");
+                                   return this.optional(element) || phone_number.length >= 9 && phone_number.match(/^6[1,2,5,6]{1}[0-9]{7}$/);
+                               }, "Veuillez Entrez le bon format de Numero");
+                                 // validate signup form on keyup and submit
+                                
+                             //Modification du nom du pays 
+                             $("#paysmo").validate({
+                                   rules: {
+                                 
+                                    moamba: {
+                                       required: true
+                                     }
+                                   },
+                                   messages: {
+                                    
+                                    moamba: {
+                                       required: "Veuillez selectionnez le pays"
+                                      }
+                                   },
+                                   
+                             submitHandler: function(form){
+                          
+                          $.ajax({
+                              url: form.action,
+                              type: form.method,
+                              data: $(form).serialize(),
+                              success: function(response) {
+                                
+                                         if (response.success) { 
+                                           window.location.href = "/Superadmin/Lespays";
+                                        
+                                         }     
+                                            
+                                  
+                                  
+                                             }            
+                                });       
+                          }
+                          
+                                 });
+                             
+                                 //code to hide topic selection, disable for demo
+                                 var newsletter = $("#newsletter");
+                                 // newsletteGHr topics are optional, hide at first
+                                 var inital = newsletter.is(":checked");
+                                 var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+                                 var topicInputs = topics.find("input").attr("disabled", !inital);
+                                 // show when newsletter is checked
+                                 newsletter.click(function() {
+                                   topics[this.checked ? "removeClass" : "addClass"]("gray");
+                                   topicInputs.attr("disabled", !this.checked);
+                                 });
+                               });
+                               </script>
+                                                <% } %>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        </div>
+                        
+                    </main>
+                </div>
+            </div>
+            <script src="/assets/semantic/assets/js/popper.min.js"></script>
+            <script src="/assets/semantic/bootstrap/js/bootstrap.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+         <script>
+           
+           $().ready(function() {
+              // validate the comment form when it is submitted
+              jQuery.validator.addMethod("phoneGuinee", function (phone_number, element) {
+                phone_number = phone_number.replace(/\s+/g, "");
+                return this.optional(element) || phone_number.length >= 9 && phone_number.match(/^6[1,2,5,6]{1}[0-9]{7}$/);
+            }, "Veuillez Entrez le bon format de Numero");
+              // validate signup form on keyup and submit
+              $("#ajout").validate({
+                rules: {
+              
+                  pays: {
+                    required: true
+                  },
+                  nomambassade: {
+                    required: true,
+                    minlength: 3
+                  }
+                },
+                messages: {
+                 
+                  pays: {
+                    required: "Veuillez selectionnner un pays"
+                   },
+                   nomambassade: {
+                    required: "Veuillez inserer un nom ambassade ",
+                    minlength: "Veuillez inserer un nom de plus de 4 caractere"
+                    
+                   }
+                },
+                
+          submitHandler: function(form){
+       
+       $.ajax({
+           url: form.action,
+           type: form.method,
+           data: $(form).serialize(),
+           success: function(response) {
+            
+      
+                      if (response.success) { 
+                        window.location.href = "/Superadmin/Lesambassade";
+                     
+                      } 
+                      if (response.erreurmotpasse) {
+  
+                          $("#erreurnumero").css({ 
+                        display: 'block'
+                      });
+                     
+                  } 
+                      if (response.erreurnumero) {
+  
+                          $("#erreurmotpasse").css({ 
+                        display: 'block'
+                      });
+                    
+                  } 
+                         
+               
+               
+                          }            
+             });       
+       }
+       
+              });
+          
+              //code to hide topic selection, disable for demo
+              var newsletter = $("#newsletter");
+              // newsletteGHr topics are optional, hide at first
+              var inital = newsletter.is(":checked");
+              var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+              var topicInputs = topics.find("input").attr("disabled", !inital);
+              // show when newsletter is checked
+              newsletter.click(function() {
+                topics[this.checked ? "removeClass" : "addClass"]("gray");
+                topicInputs.attr("disabled", !this.checked);
+              });
+            });
+            </script>
+        
+        </body>
+    </html>
+    

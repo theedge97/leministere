@@ -1,0 +1,23 @@
+<project>
+    <documents></documents>
+    <dmdesigns>
+        <dmdesign active>
+            <dmdesignskill skill="bs5.colors">
+                <dmcolor key="primary" color="rgb(66,109,140)"/>
+                <dmcolor key="secondary" color="rgb(11,46,63)"/>
+                <dmcolor key="info" color="rgb(205,219,236)"/>
+                <dmcolor key="success" color="#198754"/>
+                <dmcolor key="warning" color="#ffc107"/>
+                <dmcolor key="danger" color="#dc3545"/>
+                <dmcolor key="white" color="white"/>
+                <dmcolor key="light" color="#f8f9fa"/>
+                <dmcolor key="dark" color="#212529"/>
+            </dmdesignskill>
+            <dmdesignskill skill="fonts" text_family="BioRhyme" text_weight="300" text_color="" text_spacing="" text_effect="" text_italic="" text_smallcaps="" text_uppercase="" headings_family="Titillium Web" headings_weight="" headings_color="" headings_spacing="" headings_effect="" headings_italic="" headings_smallcaps="" headings_uppercase=""></dmdesignskill>
+            <dmdesignskill skill="headings" h1_family="" h2_family="" h1_weight="" h1_color="" h1_spacing="" h1_effect="" h1_italic="" h1_smallcaps="" h1_uppercase="uppercase" h2_weight="" h2_color="" h2_spacing="" h2_effect="" h2_italic="" h2_smallcaps="" h2_uppercase=""></dmdesignskill>
+            <dmdesignskill skill="background" image_for_colors image="https://images.unsplash.com/photo-1549948558-1c6406684186?ixid=MnwyMDkyMnwwfDF8c2VhcmNofDM5NXx8d2FsbHBhcGVyfGVufDB8fHx8MTYyNDMwMDQ1Nw&ixlib=rb-1.2.1q=85&fm=jpg&crop=faces&cs=srgb&w=1200&fit=max" selector=".poster"></dmdesignskill>
+            <dmdesignskill skill="bootstrap" gradients="" responsive_fonts="1" roundness="1" buttonRoundness="1" shadows="3"></dmdesignskill>
+        </dmdesign>
+    </dmdesigns>
+    <dmlocked bs5-colors-primary="false" bs5-colors-secondary="false" bs5-colors-info="false" bs5-colors-success="true" bs5-colors-warning="true" bs5-colors-danger="true" bs5-colors-white="true" bs5-colors-light="true" bs5-colors-dark="true" fonts-text_family="false" fonts-headings_family="false" headings-h1_family="false" background-color="true" bootstrap-roundness="true" bootstrap-buttonRoundness="true" bootstrap-shadows="true" bootstrap-gradients="true"></dmlocked>
+</project>
